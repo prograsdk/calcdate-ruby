@@ -9,8 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jesper Sand Nielsen"]
   spec.email         = ["jesper.sand.nielsen@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{A gem for parsing string timespans to DateTime}
   spec.homepage      = "https://github.com/prograsdk/calcdate-ruby"
   spec.license       = "MIT"
 
