@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "calculate/date"
+require "calculate_date"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
