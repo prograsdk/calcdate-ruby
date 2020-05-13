@@ -1,16 +1,16 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "calcdate/ruby/version"
+require "calculate/date/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "calcdate-ruby"
-  spec.version       = Calcdate::Ruby::VERSION
+  spec.name          = "calculate-date"
+  spec.version       = Calculate::Date::VERSION
   spec.authors       = ["Jesper Sand Nielsen"]
   spec.email         = ["jesper.sand.nielsen@gmail.com"]
 
   spec.summary       = %q{A gem for parsing string timespans to DateTime}
-  spec.homepage      = "https://github.com/prograsdk/calcdate-ruby"
+  spec.homepage      = "https://github.com/prograsdk/calculate-date"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -19,8 +19,8 @@ Gem::Specification.new do |spec|
     spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
     spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = "https://github.com/prograsdk/calcdate-ruby"
-    spec.metadata["changelog_uri"] = "https://github.com/prograsdk/calcdate-ruby/blob/master/CHANGELOG.md"
+    spec.metadata["source_code_uri"] = "https://github.com/prograsdk/calculate-date"
+    spec.metadata["changelog_uri"] = "https://github.com/prograsdk/calculate-date/blob/master/CHANGELOG.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."

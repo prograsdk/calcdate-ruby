@@ -1,7 +1,7 @@
-require "calcdate/ruby/version"
+require "calculate/date/version"
 
-module Calcdate
-  module Ruby
+module Calculate
+  module Date
     class Error < StandardError; end
     # Your code goes here...
   end
