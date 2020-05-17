@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'core_ext/time'
 
 RSpec.describe CalculateDate do

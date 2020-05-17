@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "calculate_date/version"
 
 module CalculateDate

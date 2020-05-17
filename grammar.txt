@@ -1,7 +1,14 @@
-<expression> = <term> | <sign> <term> | <expression>
+<expr> = <term> | <sign> <term>
 <sign> = + | -
-<term> = <number_literal> <unit> | <unit> <number_literal> | <prefix> <unit>
-<number_literal> = <number> | <number> <number_literal>
-<number> = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<term> = <term1> | <term2> | <term3>
+<term1> = <number> <unit>
+<term2> = <unit> <number>
+<term3 = <prefix> <unit>
+<number> = \d+
 <unit> = D | WD | W | M | Q | Y
 <prefix> = C
+
+
+
+expr: factor ((PLUS | MINUS) factor)*
+factor: INTEGER
