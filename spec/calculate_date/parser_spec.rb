@@ -26,6 +26,15 @@ RSpec.describe CalculateDate::Parser do
     end
 
     context 'when parsing number PLUS number' do
+      it 'token should be PLUS' do
+        lexer = CalculateDate::Lexer.new("1 + 2")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.token.type).to eq(CalculateDate::Token::PLUS)
+      end
+
       it 'should parse number PLUS number' do
         lexer = CalculateDate::Lexer.new("1 + 2")
         parser = CalculateDate::Parser.new(lexer)
@@ -44,6 +53,15 @@ RSpec.describe CalculateDate::Parser do
         expect(node.left_expr.value).to eq(1)
       end
 
+      it 'left_expr should be Number' do
+        lexer = CalculateDate::Lexer.new("1 + 2")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.left_expr).to be_a(CalculateDate::AST::Number)
+      end
+
       it 'should parse right_expr number' do
         lexer = CalculateDate::Lexer.new("1 + 2")
         parser = CalculateDate::Parser.new(lexer)
@@ -51,6 +69,15 @@ RSpec.describe CalculateDate::Parser do
         node = parser.parse
 
         expect(node.right_expr.value).to eq(2)
+      end
+
+      it 'right_expr should be Number' do
+        lexer = CalculateDate::Lexer.new("1 + 2")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.right_expr).to be_a(CalculateDate::AST::Number)
       end
     end
   end
