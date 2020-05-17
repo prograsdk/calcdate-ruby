@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'strscan'
-require 'calculate_date/lexing/token'
+require 'calculate_date/token'
 require 'calculate_date/exceptions'
 
 module CalculateDate
@@ -19,6 +19,10 @@ module CalculateDate
       @buffer.scan(/\d+/).to_i
     end
 
+    def binary_operator
+      @buffer.getch
+    end
+
     def next_token
       while !@buffer.eos?
         if @buffer.peek(1).match(/\s/)
@@ -26,22 +30,14 @@ module CalculateDate
           next
         end
 
-        if @buffer.peek(1).match(/\d/)
-          return CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, integer)
-        end
-
-        if @buffer.peek(1) == '+'
-          return CalculateDate::Lexing::Token.new(CalculateDate::Lexing::PLUS, '+')
-        end
-
-        if @buffer.peek(1) == '-'
-          return CalculateDate::Lexing::Token.new(CalculateDate::Lexing::MINUS, '-')
-        end
+        return CalculateDate::Token.new(CalculateDate::Token::INTEGER, integer) if @buffer.peek(1).match(/\d/)
+        return CalculateDate::Token.new(CalculateDate::Token::PLUS, binary_operator) if @buffer.peek(1) == '+'
+        return CalculateDate::Token.new(CalculateDate::Token::MINUS, binary_operator) if @buffer.peek(1) == '-'
 
         raise Exceptions::SyntaxError.new('Invalid syntax')
       end
 
-      return CalculateDate::Lexing::Token.new(CalculateDate::Lexing::EOS, nil)
+      return CalculateDate::Token.new(CalculateDate::Token::EOS, nil)
     end
   end
 end

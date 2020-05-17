@@ -1,2 +1,0 @@
-class CalculateDate::Ast
-end

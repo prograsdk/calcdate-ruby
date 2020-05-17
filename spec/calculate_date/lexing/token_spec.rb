@@ -1,11 +1,11 @@
-require 'calculate_date/lexing/token'
+require 'calculate_date/token'
 
-RSpec.describe CalculateDate::Lexing::Token do
+RSpec.describe CalculateDate::Token do
   describe '#str' do
     context 'when INTEGER' do
       context '1' do
         it 'should write str representation of token' do
-          token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, 1)
+          token = CalculateDate::Token.new(CalculateDate::Token::INTEGER, 1)
 
           expect(token.str).to eq("Token(INTEGER, 1)")
         end
@@ -13,7 +13,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
       context '12' do
         it 'should write str representation of token' do
-          token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, 12)
+          token = CalculateDate::Token.new(CalculateDate::Token::INTEGER, 12)
 
           expect(token.str).to eq("Token(INTEGER, 12)")
         end
@@ -22,7 +22,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when PLUS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::PLUS, "+")
+        token = CalculateDate::Token.new(CalculateDate::Token::PLUS, "+")
 
         expect(token.str).to eq("Token(PLUS, +)")
       end
@@ -30,7 +30,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when MINUS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::MINUS, "-")
+        token = CalculateDate::Token.new(CalculateDate::Token::MINUS, "-")
 
         expect(token.str).to eq("Token(MINUS, -)")
       end
@@ -38,9 +38,9 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when EOF' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::EOF, nil)
+        token = CalculateDate::Token.new(CalculateDate::Token::EOS, nil)
 
-        expect(token.str).to eq("Token(EOF, None)")
+        expect(token.str).to eq("Token(EOS, None)")
       end
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe CalculateDate::Lexing::Token do
     context 'when INTEGER' do
       context '1' do
         it 'should write str representation of token' do
-          token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, 1)
+          token = CalculateDate::Token.new(CalculateDate::Token::INTEGER, 1)
 
           expect(token.type).to eq("INTEGER")
         end
@@ -57,7 +57,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
       context '12' do
         it 'should write str representation of token' do
-          token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, 12)
+          token = CalculateDate::Token.new(CalculateDate::Token::INTEGER, 12)
 
           expect(token.type).to eq("INTEGER")
         end
@@ -66,7 +66,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when PLUS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::PLUS, "+")
+        token = CalculateDate::Token.new(CalculateDate::Token::PLUS, "+")
 
         expect(token.type).to eq("PLUS")
       end
@@ -74,7 +74,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when MINUS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::MINUS, "-")
+        token = CalculateDate::Token.new(CalculateDate::Token::MINUS, "-")
 
         expect(token.type).to eq("MINUS")
       end
@@ -82,9 +82,9 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when EOF' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::EOF, nil)
+        token = CalculateDate::Token.new(CalculateDate::Token::EOS, nil)
 
-        expect(token.type).to eq("EOF")
+        expect(token.type).to eq("EOS")
       end
     end
   end
@@ -93,7 +93,7 @@ RSpec.describe CalculateDate::Lexing::Token do
     context 'when INTEGER' do
       context '1' do
         it 'should write str representation of token' do
-          token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, 1)
+          token = CalculateDate::Token.new(CalculateDate::Token::INTEGER, 1)
 
           expect(token.value).to eq(1)
         end
@@ -101,7 +101,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
       context '12' do
         it 'should write str representation of token' do
-          token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::INTEGER, 12)
+          token = CalculateDate::Token.new(CalculateDate::Token::INTEGER, 12)
 
           expect(token.value).to eq(12)
         end
@@ -110,7 +110,7 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when PLUS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::PLUS, "+")
+        token = CalculateDate::Token.new(CalculateDate::Token::PLUS, "+")
 
         expect(token.value).to eq("+")
       end
@@ -118,15 +118,15 @@ RSpec.describe CalculateDate::Lexing::Token do
 
     context 'when MINUS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::MINUS, "-")
+        token = CalculateDate::Token.new(CalculateDate::Token::MINUS, "-")
 
         expect(token.value).to eq("-")
       end
     end
 
-    context 'when EOF' do
+    context 'when EOS' do
       it 'should write str representation of token' do
-        token = CalculateDate::Lexing::Token.new(CalculateDate::Lexing::EOF, nil)
+        token = CalculateDate::Token.new(CalculateDate::Token::EOS, nil)
 
         expect(token.value).to eq(nil)
       end

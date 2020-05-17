@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'calculate_date/lexer'
-require 'calculate_date/lexing/token'
+require 'calculate_date/token'
 
 RSpec.describe CalculateDate::Lexer do
   describe '#next_token' do
@@ -52,9 +52,9 @@ RSpec.describe CalculateDate::Lexer do
       it 'should all tokens be INTEGER type when parsing "12 1 100"' do
         lexer = CalculateDate::Lexer.new("12 1 100");
 
-        expect(lexer.next_token.type).to eq(CalculateDate::Lexing::INTEGER)
-        expect(lexer.next_token.type).to eq(CalculateDate::Lexing::INTEGER)
-        expect(lexer.next_token.type).to eq(CalculateDate::Lexing::INTEGER)
+        expect(lexer.next_token.type).to eq(CalculateDate::Token::INTEGER)
+        expect(lexer.next_token.type).to eq(CalculateDate::Token::INTEGER)
+        expect(lexer.next_token.type).to eq(CalculateDate::Token::INTEGER)
       end
     end
 
@@ -68,7 +68,7 @@ RSpec.describe CalculateDate::Lexer do
       it 'should all tokens be PLUS type when parsing "+"' do
         lexer = CalculateDate::Lexer.new("+");
 
-        expect(lexer.next_token.type).to eq(CalculateDate::Lexing::PLUS)
+        expect(lexer.next_token.type).to eq(CalculateDate::Token::PLUS)
       end
     end
 
@@ -82,7 +82,7 @@ RSpec.describe CalculateDate::Lexer do
       it 'should all tokens be PLUS type when parsing "-"' do
         lexer = CalculateDate::Lexer.new("-");
 
-        expect(lexer.next_token.type).to eq(CalculateDate::Lexing::MINUS)
+        expect(lexer.next_token.type).to eq(CalculateDate::Token::MINUS)
       end
     end
 
