@@ -85,5 +85,13 @@ RSpec.describe CalculateDate::Lexer do
         expect(lexer.next_token.type).to eq(CalculateDate::Lexing::MINUS)
       end
     end
+
+    context ' when parsing unkonwn syntax' do
+      it 'should raise SyntaxError' do
+        lexer = CalculateDate::Lexer.new("!");
+
+        expect{ lexer.next_token }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
   end
 end

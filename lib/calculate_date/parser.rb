@@ -1,55 +1,13 @@
 # frozen_string_literal: true
 
-require 'strscan'
-require 'calculate_date/parsing/token'
+require 'calculate_date/lexer'
+require 'calculate_date/lexing/token'
+require 'calculate_date/exceptions'
 
 module CalculateDate
   class Parser
-    class ParseError < StandardError; end
-    class SyntaxError < ParseError; end
 
     attr_reader :numbers, :signs, :ast
-
-    def initialize(str)
-      @buffer = StringScanner.new(str)
-      toke
-    end
-
-    ######################################
-    # Lexing code                        #
-    ######################################
-    def skip_whitespace
-      @buffer.skip(/\s+/)
-    end
-
-    def integer
-      @buffer.scan(/\d+/).to_i
-    end
-
-    def next_token
-      unless @buffer.eos?
-        if @buffer.peek(1).match(/\s/)
-          skip_spaces
-          next
-        end
-
-        if @buffer.peek(1).match(/\d/)
-          return CalculateDate::Parsing::Token(CalculateDate::Parsing::INTEGER, integer)
-        end
-
-        if @buffer.peek(1) == '+'
-          return CalculateDate::Parsing::Token(CalculateDate::Parsing::PLUS, '+')
-        end
-
-        if @buffer.peek(1) == '-'
-          return CalculateDate::Parsing::Token(CalculateDate::Parsing::MINUS, '-')
-        end
-
-        raise SyntaxError('Invalid syntax')
-      end
-
-      return CalculateDate::Parsing::Token(CalculateDate::Parsing::EOS, nil)
-    end
 
     ######################################
     # Parsing code                       #
@@ -59,7 +17,7 @@ module CalculateDate
       if current_token.type == token_type
         current_token = next_token
       else
-        raise SyntaxError('Invalid syntax')
+        raise Exceptions::SyntaxError('Invalid syntax')
       end
     end
 

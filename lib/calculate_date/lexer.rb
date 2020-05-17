@@ -2,6 +2,7 @@
 
 require 'strscan'
 require 'calculate_date/lexing/token'
+require 'calculate_date/exceptions'
 
 module CalculateDate
   class Lexer
@@ -37,7 +38,7 @@ module CalculateDate
           return CalculateDate::Lexing::Token.new(CalculateDate::Lexing::MINUS, '-')
         end
 
-        raise SyntaxError('Invalid syntax')
+        raise Exceptions::SyntaxError.new('Invalid syntax')
       end
 
       return CalculateDate::Lexing::Token.new(CalculateDate::Lexing::EOS, nil)
