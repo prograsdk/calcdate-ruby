@@ -5,7 +5,7 @@
 <term2> = <unit> <number>
 <term3 = <prefix> <unit>
 <number> = INTEGER
-<unit> = D | WD | W | M | Q | Y
+<unit> = H | D | WD | W | M | Q | Y
 <prefix> = C
 
 
