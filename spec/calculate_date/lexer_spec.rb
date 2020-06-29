@@ -15,6 +15,14 @@ RSpec.describe CalculateDate::Lexer do
   end
 
   describe '#next_token' do
+    context ' when parsing unkonwn syntax' do
+      it 'should raise SyntaxError' do
+        lexer = CalculateDate::Lexer.new("!");
+
+        expect{ lexer.next_token }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
+
     context 'number' do
       it 'should parse "1"' do
         lexer = CalculateDate::Lexer.new("1");
@@ -86,11 +94,89 @@ RSpec.describe CalculateDate::Lexer do
       end
     end
 
-    context ' when parsing unkonwn syntax' do
-      it 'should raise SyntaxError' do
-        lexer = CalculateDate::Lexer.new("!");
+    context 'date_units' do
+      context 'day' do
+        it 'should parse date unit' do
+          lexer = CalculateDate::Lexer.new('day')
 
-        expect{ lexer.next_token }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+          expect(lexer.next_token.type).to eq(CalculateDate::Token::DATE_UNIT)
+        end
+
+        it 'should parse day' do
+          lexer = CalculateDate::Lexer.new('day')
+
+          expect(lexer.next_token.value).to eq('day')
+        end
+      end
+
+      context 'days' do
+        it 'should parse date unit' do
+          lexer = CalculateDate::Lexer.new('days')
+
+          expect(lexer.next_token.type).to eq(CalculateDate::Token::DATE_UNIT)
+        end
+
+        it 'should parse day' do
+          lexer = CalculateDate::Lexer.new('days')
+
+          expect(lexer.next_token.value).to eq('days')
+        end
+      end
+
+      context 'month' do
+        it 'should parse date unit' do
+          lexer = CalculateDate::Lexer.new('month')
+
+          expect(lexer.next_token.type).to eq(CalculateDate::Token::DATE_UNIT)
+        end
+
+        it 'should parse month' do
+          lexer = CalculateDate::Lexer.new('month')
+
+          expect(lexer.next_token.value).to eq('month')
+        end
+      end
+
+      context 'months' do
+        it 'should parse date unit' do
+          lexer = CalculateDate::Lexer.new('months')
+
+          expect(lexer.next_token.type).to eq(CalculateDate::Token::DATE_UNIT)
+        end
+
+        it 'should parse month' do
+          lexer = CalculateDate::Lexer.new('months')
+
+          expect(lexer.next_token.value).to eq('months')
+        end
+      end
+
+      context 'year' do
+        it 'should parse date unit' do
+          lexer = CalculateDate::Lexer.new('year')
+
+          expect(lexer.next_token.type).to eq(CalculateDate::Token::DATE_UNIT)
+        end
+
+        it 'should parse year' do
+          lexer = CalculateDate::Lexer.new('year')
+
+          expect(lexer.next_token.value).to eq('year')
+        end
+      end
+
+      context 'years' do
+        it 'should parse date unit' do
+          lexer = CalculateDate::Lexer.new('years')
+
+          expect(lexer.next_token.type).to eq(CalculateDate::Token::DATE_UNIT)
+        end
+
+        it 'should parse year' do
+          lexer = CalculateDate::Lexer.new('years')
+
+          expect(lexer.next_token.value).to eq('years')
+        end
       end
     end
   end

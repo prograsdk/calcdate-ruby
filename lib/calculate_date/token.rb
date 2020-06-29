@@ -4,6 +4,7 @@ module CalculateDate
     PLUS = 'PLUS'
     MINUS = 'MINUS'
     DATE_UNIT = 'DATE_UNIT'
+    HOUR_UNIT = 'HOUR_UNIT'
     EOS = 'EOS'
 
     attr_reader :type, :value

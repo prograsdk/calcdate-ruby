@@ -1,15 +1,7 @@
-<expr> = <term> | <sign> <term>
-<sign> = PLUS | MINUS
-<term> = <term1> | <term2> | <term3>
-<term1> = <number> <unit>
-<term2> = <unit> <number>
-<term3 = <prefix> <unit>
-<number> = INTEGER
-<unit> = H | D | WD | W | M | Q | Y
-<prefix> = C
-
-
-
-expr: term ((PLUS | MINUS) term)*
-term: number
+expr: term (((PLUS | MINUS) term)* | at_term)
+at_term: at time_term
+term: time_term | timespan_term
+time_term: number{2}:number{2}
+timespan_term: number unit
 number: INTEGER
+unit: day | days | month | months | year | years
