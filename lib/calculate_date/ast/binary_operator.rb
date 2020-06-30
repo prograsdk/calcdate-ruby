@@ -13,10 +13,6 @@ module CalculateDate
 
       attr_reader :left_expr, :right_expr
 
-      def weed
-        BinaryOperator.new(left_expr.weed, token, right_expr.weed)
-      end
-
       # def visit
       #   if operator == '+'
 
@@ -29,14 +25,14 @@ module CalculateDate
 
       private
 
-      def merge_hash(hash, new_hash)
-        keys = hash.keys.map(&:to_sym) + new_hash.keys.map(&:to_sym)
+      # def merge_hash(hash, new_hash)
+      #   keys = hash.keys.map(&:to_sym) + new_hash.keys.map(&:to_sym)
 
-        keys.map do |key|
-          old_value = key
-          [key, hash.fetch()]
-        end
-      end
+      #   keys.map do |key|
+      #     old_value = key
+      #     [key, hash.fetch()]
+      #   end
+      # end
     end
   end
 end

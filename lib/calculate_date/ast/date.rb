@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require 'calculate_date/token'
 require 'calculate_date/ast/node'
-require 'pry'
 
 module CalculateDate
   module AST
@@ -26,12 +24,6 @@ module CalculateDate
       end
 
       attr_reader :expr, :unit
-
-      def weed
-        new_token = CalculateDate::Token.new(token.type, DATE_RESOLVES[token.value.to_sym])
-
-        Date.new(expr.weed, new_token)
-      end
 
       # def visit
       #   {

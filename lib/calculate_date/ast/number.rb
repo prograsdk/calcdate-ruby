@@ -12,10 +12,6 @@ module CalculateDate
 
       attr_reader :value
 
-      def weed
-        Number.new(token)
-      end
-
       # def visit
       #   value
       # end
