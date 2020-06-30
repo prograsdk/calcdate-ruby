@@ -66,33 +66,33 @@ this generates a time object 10 days before 1 month from now
 #### Time setup 12 Hour format
 
 ```
-at 02:00 AM
+current day at 02:00 AM
 ```
 Returns a Time object at 2 AM today
 
 ```
-at 11:30 AM
+current day at 11:30 AM
 ```
 Returns a Time object at 11:30 AM today
 
 ```
-at 06:00 PM
+current day at 06:00 PM
 ```
 Returns a Time object at 6 PM today
 
 #### Time setup 24 Hour format
 ```
-at 02:00
+current day at 02:00
 ```
 Returns a Time object at 2 AM today
 
 ```
-at 11:30
+current day at 11:30
 ```
 Returns a Time object at 11:30 AM today
 
 ```
-at 18:00
+current day at 18:00
 ```
 Returns a Time object at 6 PM today
 
