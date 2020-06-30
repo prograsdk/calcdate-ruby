@@ -5,9 +5,9 @@ require 'calculate_date/ast/node'
 module CalculateDate
   module AST
     class Date < Node
-      DAY = 'day'
-      MONTH = 'month'
-      YEAR = 'year'
+      DAY = 'days'
+      MONTH = 'months'
+      YEAR = 'years'
       DATE_RESOLVES = {
         day: DAY,
         days: DAY,
@@ -24,12 +24,6 @@ module CalculateDate
       end
 
       attr_reader :expr, :unit
-
-      # def visit
-      #   {
-      #     unit.to_sym => expr.visit
-      #   }
-      # end
     end
   end
 end

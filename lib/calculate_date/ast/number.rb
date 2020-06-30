@@ -11,10 +11,6 @@ module CalculateDate
       end
 
       attr_reader :value
-
-      # def visit
-      #   value
-      # end
     end
   end
 end

@@ -64,58 +64,58 @@ RSpec.describe CalculateDate::Weeder do
     end
 
     context 'when parsing unit' do
-      it 'should still be day' do
+      it 'should rewrite day to days' do
         lexer = CalculateDate::Lexer.new("1 day")
         ast = CalculateDate::Parser.new(lexer).parse
 
         weeded_ast = CalculateDate::Weeder.new(ast).weed
 
-        expect(weeded_ast.unit).to eq('day')
+        expect(weeded_ast.unit).to eq('days')
       end
 
-      it 'should rewrite days to day' do
+      it 'should still be days' do
         lexer = CalculateDate::Lexer.new("1 days")
         ast = CalculateDate::Parser.new(lexer).parse
 
         weeded_ast = CalculateDate::Weeder.new(ast).weed
 
-        expect(weeded_ast.unit).to eq('day')
+        expect(weeded_ast.unit).to eq('days')
       end
 
-      it 'should still be month' do
+      it 'should rewrite month to months' do
         lexer = CalculateDate::Lexer.new("1 month")
         ast = CalculateDate::Parser.new(lexer).parse
 
         weeded_ast = CalculateDate::Weeder.new(ast).weed
 
-        expect(weeded_ast.unit).to eq('month')
+        expect(weeded_ast.unit).to eq('months')
       end
 
-      it 'should rewrite months to month' do
+      it 'should still be months' do
         lexer = CalculateDate::Lexer.new("1 months")
         ast = CalculateDate::Parser.new(lexer).parse
 
         weeded_ast = CalculateDate::Weeder.new(ast).weed
 
-        expect(weeded_ast.unit).to eq('month')
+        expect(weeded_ast.unit).to eq('months')
       end
 
-      it 'should still be year' do
+      it 'should rewrite year to years' do
         lexer = CalculateDate::Lexer.new("1 year")
         ast = CalculateDate::Parser.new(lexer).parse
 
         weeded_ast = CalculateDate::Weeder.new(ast).weed
 
-        expect(weeded_ast.unit).to eq('year')
+        expect(weeded_ast.unit).to eq('years')
       end
 
-      it 'should rewrite years to year' do
+      it 'should still be years' do
         lexer = CalculateDate::Lexer.new("1 years")
         ast = CalculateDate::Parser.new(lexer).parse
 
         weeded_ast = CalculateDate::Weeder.new(ast).weed
 
-        expect(weeded_ast.unit).to eq('year')
+        expect(weeded_ast.unit).to eq('years')
       end
     end
   end
