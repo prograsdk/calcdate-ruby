@@ -2,7 +2,6 @@
 
 require 'calculate_date/parser'
 require 'calculate_date/exceptions'
-require 'pry'
 
 RSpec.describe CalculateDate::Parser do
   describe '#parse' do
@@ -202,6 +201,51 @@ RSpec.describe CalculateDate::Parser do
     context 'when only parsing number' do
       it 'should raise syntax error' do
         lexer = CalculateDate::Lexer.new("1")
+        parser = CalculateDate::Parser.new(lexer)
+
+        expect { parser.parse }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
+
+    context 'when parsing number and sign' do
+      it 'should raise syntax error' do
+        lexer = CalculateDate::Lexer.new("1 +")
+        parser = CalculateDate::Parser.new(lexer)
+
+        expect { parser.parse }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
+
+    context 'when parsing number, unit and sign' do
+      it 'should raise syntax error' do
+        lexer = CalculateDate::Lexer.new("1 day +")
+        parser = CalculateDate::Parser.new(lexer)
+
+        expect { parser.parse }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
+
+    context 'when parsing number, unit, sign and number again' do
+      it 'should raise syntax error' do
+        lexer = CalculateDate::Lexer.new("1 day + 1")
+        parser = CalculateDate::Parser.new(lexer)
+
+        expect { parser.parse }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
+
+    context 'when parsing number, unit, sign and unit' do
+      it 'should raise syntax error' do
+        lexer = CalculateDate::Lexer.new("1 day + day")
+        parser = CalculateDate::Parser.new(lexer)
+
+        expect { parser.parse }.to raise_error(CalculateDate::Exceptions::SyntaxError)
+      end
+    end
+
+    context 'when parsing number, sign and unit' do
+      it 'should raise syntax error' do
+        lexer = CalculateDate::Lexer.new("1 + day")
         parser = CalculateDate::Parser.new(lexer)
 
         expect { parser.parse }.to raise_error(CalculateDate::Exceptions::SyntaxError)
