@@ -9,7 +9,7 @@ module CalculateDate
 
     attr_reader :root, :environment
 
-    def evaluate
+    def interpret
       Time.now.advance(visit(root))
     end
 

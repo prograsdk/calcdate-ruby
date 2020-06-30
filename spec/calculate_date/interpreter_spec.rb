@@ -7,7 +7,7 @@ require 'fe_core_ext'
 require "fe_core_ext/core_ext/time"
 
 RSpec.describe CalculateDate::Interpreter do
-  describe '#evaluate' do
+  describe '#interpret' do
     before :each do
       allow(Time).to receive(:now).and_return(Time.now)
     end
@@ -21,7 +21,7 @@ RSpec.describe CalculateDate::Interpreter do
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(1.day.from_now)
+          expect(interpreter.interpret).to eq(1.day.from_now)
         end
 
         it 'should return 10 days from now' do
@@ -31,7 +31,7 @@ RSpec.describe CalculateDate::Interpreter do
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(10.days.from_now)
+          expect(interpreter.interpret).to eq(10.days.from_now)
         end
       end
 
@@ -43,7 +43,7 @@ RSpec.describe CalculateDate::Interpreter do
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(1.month.from_now)
+          expect(interpreter.interpret).to eq(1.month.from_now)
         end
 
         it 'should return 10 months from now' do
@@ -53,7 +53,7 @@ RSpec.describe CalculateDate::Interpreter do
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(10.months.from_now)
+          expect(interpreter.interpret).to eq(10.months.from_now)
         end
       end
 
@@ -65,7 +65,7 @@ RSpec.describe CalculateDate::Interpreter do
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(1.year.from_now)
+          expect(interpreter.interpret).to eq(1.year.from_now)
         end
 
         it 'should return 10 years from now' do
@@ -75,61 +75,61 @@ RSpec.describe CalculateDate::Interpreter do
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(10.years.from_now)
+          expect(interpreter.interpret).to eq(10.years.from_now)
         end
       end
     end
 
     context 'plus dates' do
       context '2 dates' do
-        it 'should evaluate 1 day + 1 day' do
+        it 'should interpret 1 day + 1 day' do
           lexer = CalculateDate::Lexer.new("1 day + 1 day")
           ast = CalculateDate::Parser.new(lexer).parse
           weeded_ast = CalculateDate::Weeder.new(ast).weed
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(2.days.from_now)
+          expect(interpreter.interpret).to eq(2.days.from_now)
         end
 
-        it 'should evaluate 1 day + 2 days' do
+        it 'should interpret 1 day + 2 days' do
           lexer = CalculateDate::Lexer.new("1 day + 2 days")
           ast = CalculateDate::Parser.new(lexer).parse
           weeded_ast = CalculateDate::Weeder.new(ast).weed
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(3.days.from_now)
+          expect(interpreter.interpret).to eq(3.days.from_now)
         end
 
-        it 'should evaluate 1 month + 1 day' do
+        it 'should interpret 1 month + 1 day' do
           lexer = CalculateDate::Lexer.new("1 month + 1 day")
           ast = CalculateDate::Parser.new(lexer).parse
           weeded_ast = CalculateDate::Weeder.new(ast).weed
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(1.month.from_now + 1.day)
+          expect(interpreter.interpret).to eq(1.month.from_now + 1.day)
         end
 
-        it 'should evaluate 1 year + 1 month' do
+        it 'should interpret 1 year + 1 month' do
           lexer = CalculateDate::Lexer.new("1 year + 1 month")
           ast = CalculateDate::Parser.new(lexer).parse
           weeded_ast = CalculateDate::Weeder.new(ast).weed
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(1.year.from_now + 1.month)
+          expect(interpreter.interpret).to eq(1.year.from_now + 1.month)
         end
 
-        it 'should evaluate 1 year + 1 month + 10 days' do
+        it 'should interpret 1 year + 1 month + 10 days' do
           lexer = CalculateDate::Lexer.new("1 year + 1 month + 10 days")
           ast = CalculateDate::Parser.new(lexer).parse
           weeded_ast = CalculateDate::Weeder.new(ast).weed
 
           interpreter = CalculateDate::Interpreter.new(weeded_ast)
 
-          expect(interpreter.evaluate).to eq(1.year.from_now + 1.month + 10.days)
+          expect(interpreter.interpret).to eq(1.year.from_now + 1.month + 10.days)
         end
       end
     end
