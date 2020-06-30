@@ -5,6 +5,7 @@ require 'calculate_date/token'
 require 'calculate_date/exceptions'
 require 'calculate_date/ast/binary_operator'
 require 'calculate_date/ast/number'
+require 'calculate_date/ast/date'
 
 module CalculateDate
   class Parser
@@ -20,24 +21,36 @@ module CalculateDate
       if @current_token.type == token_type
         @current_token = lexer.next_token
       else
-        raise Exceptions::SyntaxError('Invalid syntax')
+        raise Exceptions::SyntaxError.new('Invalid syntax')
       end
     end
 
-    def factor
+    def number
       token = @current_token
       eat(CalculateDate::Token::INTEGER)
 
       CalculateDate::AST::Number.new(token)
     end
 
+    def date_term
+      node = number
+
+      token = @current_token
+      eat(CalculateDate::Token::DATE_UNIT)
+
+      node = CalculateDate::AST::Date.new(node, token)
+
+      node
+    end
+
     def term
-      factor
+      date_term
     end
 
     # grammar
     # expr: term ((PLUS | MINUS) term)*
-    # term: number
+    # term: date_term
+    # date_term: number unit
     # number: INTEGER
     def expr
       node = term

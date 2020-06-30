@@ -1,7 +1,7 @@
 expr: term (((PLUS | MINUS) term)* | at_term)
 at_term: at time_term
-term: time_term | timespan_term
+term: time_term | date_term
 time_term: number{2}:number{2}
-timespan_term: number unit
+date_term: number unit
 number: INTEGER
 unit: day | days | month | months | year | years
