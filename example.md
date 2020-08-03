@@ -107,3 +107,9 @@ Returns a Time object 1 day from now at 2:00 AM
 1 months + 10 days at 02:00 AM
 ```
 Returns a Time object 1 month and 10 days from now at 2:00 AM
+
+### First comming date of multiple dates
+```
+first of (day 1; day 16)
+```
+Return a Time object of the 1st in next month if that date is closer to now than the 16th, else the next 16th
