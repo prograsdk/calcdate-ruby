@@ -1,5 +1,9 @@
+require 'calculate_date/visitor'
+
 module CalculateDate
   class Interpreter
+    include CalculateDate::Visitor
+
     class InterpretationError < StandardError; end
 
     def initialize(root, environment = {})
@@ -11,11 +15,6 @@ module CalculateDate
 
     def interpret
       Time.now.advance(visit(root))
-    end
-
-    def visit(node)
-      short_name = node.class.to_s.split('::').last.underscore
-      send("visit_#{short_name}", node)
     end
 
     def visit_number(node)

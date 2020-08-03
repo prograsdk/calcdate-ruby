@@ -1,8 +1,11 @@
 require 'string'
 require 'calculate_date/token'
+require 'calculate_date/visitor'
 
 module CalculateDate
   class Weeder
+    include CalculateDate::Visitor
+
     def initialize(root, options = {})
       @root = root
       @options = options
@@ -12,11 +15,6 @@ module CalculateDate
 
     def weed
       visit(root)
-    end
-
-    def visit(node)
-      short_name = node.class.to_s.split('::').last.underscore
-      send("visit_#{short_name}", node)
     end
 
     def visit_date(node)
