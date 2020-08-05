@@ -11,6 +11,8 @@ module CalculateDate
       DATE_RESOLVES = {
         day: { value: 1, unit: DAY },
         days: { value: 1, unit: DAY },
+        week: { value: 7, unit: DAY },
+        weeks: { value: 7, unit: DAY },
         month: { value: 1, unit: MONTH },
         months: { value: 1, unit: MONTH },
         year: { value: 1, unit: YEAR },

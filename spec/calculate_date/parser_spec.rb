@@ -292,6 +292,46 @@ RSpec.describe CalculateDate::Parser do
       end
     end
 
+    context 'when parsing 1 week' do
+      it 'should parse week date_unit' do
+        lexer = CalculateDate::Lexer.new("1 week")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node).to be_a(CalculateDate::AST::Date)
+      end
+
+      it 'should parse week date_unit' do
+        lexer = CalculateDate::Lexer.new("1 week")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.unit).to eq('week')
+      end
+    end
+
+    context 'when parsing 2 weeks' do
+      it 'should parse weeks date_unit' do
+        lexer = CalculateDate::Lexer.new("2 weeks")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node).to be_a(CalculateDate::AST::Date)
+      end
+
+      it 'should parse weeks date_unit' do
+        lexer = CalculateDate::Lexer.new("2 weeks")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.unit).to eq('weeks')
+      end
+    end
+
     context 'when parsing 1 month' do
       it 'should parse month date_unit' do
         lexer = CalculateDate::Lexer.new("1 month")
