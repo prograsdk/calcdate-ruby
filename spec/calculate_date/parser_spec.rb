@@ -332,6 +332,46 @@ RSpec.describe CalculateDate::Parser do
       end
     end
 
+    context 'when parsing 1 quarter' do
+      it 'should parse quarter date_unit' do
+        lexer = CalculateDate::Lexer.new("1 quarter")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node).to be_a(CalculateDate::AST::Date)
+      end
+
+      it 'should parse quarter date_unit' do
+        lexer = CalculateDate::Lexer.new("1 quarter")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.unit).to eq('quarter')
+      end
+    end
+
+    context 'when parsing 2 quarters' do
+      it 'should parse quarters date_unit' do
+        lexer = CalculateDate::Lexer.new("2 quarters")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node).to be_a(CalculateDate::AST::Date)
+      end
+
+      it 'should parse quarters date_unit' do
+        lexer = CalculateDate::Lexer.new("2 quarters")
+        parser = CalculateDate::Parser.new(lexer)
+
+        node = parser.parse
+
+        expect(node.unit).to eq('quarters')
+      end
+    end
+
     context 'when parsing 1 year' do
       it 'should parse year date_unit' do
         lexer = CalculateDate::Lexer.new("1 year")

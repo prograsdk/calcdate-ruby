@@ -18,9 +18,13 @@ module CalculateDate
     end
 
     def visit_date(node)
-      new_token = CalculateDate::Token.new(node.token.type, CalculateDate::AST::Date::DATE_RESOLVES[node.token.value.to_sym])
+      resolve_hash = CalculateDate::AST::Date::DATE_RESOLVES[node.token.value.to_sym]
+      new_date_token = CalculateDate::Token.new(node.token.type, resolve_hash[:unit])
+      new_number_token = CalculateDate::Token.new(node.expr.token.type, node.expr.value * resolve_hash[:value])
 
-      CalculateDate::AST::Date.new(visit(node.expr), new_token)
+      new_number_expr = CalculateDate::AST::Number.new(new_number_token)
+
+      CalculateDate::AST::Date.new(visit(new_number_expr), new_date_token)
     end
 
     def visit_number(node)

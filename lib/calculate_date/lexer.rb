@@ -8,7 +8,7 @@ module CalculateDate
   class Lexer
     class LexingError < StandardError; end
 
-    DATE_TOKEN = ['days', 'day', 'months', 'month', 'years', 'year']
+    DATE_TOKEN = ['days', 'day', 'months', 'month', 'quarters', 'quarter', 'years', 'year']
 
     def initialize(str)
       @buffer = StringScanner.new(str)

@@ -91,6 +91,42 @@ RSpec.describe CalculateDate::Weeder do
         expect(weeded_ast.unit).to eq('months')
       end
 
+      it 'should rewrite quarter to months' do
+        lexer = CalculateDate::Lexer.new("1 quarter")
+        ast = CalculateDate::Parser.new(lexer).parse
+
+        weeded_ast = CalculateDate::Weeder.new(ast).weed
+
+        expect(weeded_ast.unit).to eq('months')
+      end
+
+      it 'should rewrite quarters to months' do
+        lexer = CalculateDate::Lexer.new("2 quarters")
+        ast = CalculateDate::Parser.new(lexer).parse
+
+        weeded_ast = CalculateDate::Weeder.new(ast).weed
+
+        expect(weeded_ast.unit).to eq('months')
+      end
+
+      it 'should multiply quarter by 3 to months' do
+        lexer = CalculateDate::Lexer.new("1 quarter")
+        ast = CalculateDate::Parser.new(lexer).parse
+
+        weeded_ast = CalculateDate::Weeder.new(ast).weed
+
+        expect(weeded_ast.expr.value).to eq(3)
+      end
+
+      it 'should multiply quarters by 3 to months' do
+        lexer = CalculateDate::Lexer.new("2 quarters")
+        ast = CalculateDate::Parser.new(lexer).parse
+
+        weeded_ast = CalculateDate::Weeder.new(ast).weed
+
+        expect(weeded_ast.expr.value).to eq(6)
+      end
+
       it 'should still be months' do
         lexer = CalculateDate::Lexer.new("1 months")
         ast = CalculateDate::Parser.new(lexer).parse

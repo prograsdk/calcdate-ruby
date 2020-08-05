@@ -13,8 +13,8 @@ module CalculateDate
 
     attr_reader :root, :environment
 
-    def interpret
-      Time.now.advance(visit(root))
+    def interpret(ref_time = Time.now)
+      ref_time.advance(visit(root))
     end
 
     def visit_number(node)
